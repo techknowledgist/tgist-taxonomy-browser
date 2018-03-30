@@ -2,7 +2,7 @@
 body { padding-left: 5pt; }
 	
 h1 { padding: 5pt; border-bottom: solid darkred; }
-h2 { paddingx: 5pt; }
+h2 { padding: 5pt; border-bottom: thin solid darkred; }
 
 p { padding-left: 5pt; }
 
@@ -24,20 +24,12 @@ li { padding: 2px; }
 .indent {
     margin-left: 5pt; }
 
-.navigation a:link    { color: darkred; text-decoration: none; }
-.navigation a:visited { color: darkred; text-decoration: none; }
-.navigation a:active  { color: darkred; text-decoration: none; }
-.navigation a:hover   { color: darkred; text-decoration: underline; }
-
 a:link    { color: darkblue; text-decoration: none; }
 a:visited { color: purple; text-decoration: none; }
 a:active  { color: darkred; text-decoration: none; }
 a:hover   { color: darkred; text-decoration: underline; }
 
-.header {
-    font-size: 150%; }
-
-.infobox {
+.box {
     border: thin solid black;
     padding-tox: 4pt;
     padding: 8pt; }
