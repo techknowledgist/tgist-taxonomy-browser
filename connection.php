@@ -3,6 +3,8 @@
 define('MACAIR', 1);
 define('BATCAVE', 2);
 
+$corpus = $_GET['corpus'];
+
 if ($_SERVER['SERVER_NAME'] == 'batcaves.org' or
     $_SERVER['SERVER_NAME'] == 'www.batcaves.org') {
     $PLATFORM = BATCAVE; }
@@ -19,8 +21,9 @@ function connect_macair() {
     connect("127.0.0.1", 'root', "wortel", 'bso'); }
 
 function connect_batcave() {
+    global $corpus;
     $pw = trim(file_get_contents("password.txt"));
-    connect("localhost", 'batcave1_tgist', $pw, 'batcave1_tgist_SignalProcessing'); }
+    connect("localhost", 'batcave1_tgist', $pw, 'batcave1_tgist_' . $corpus); }
 
 function connect($host, $user, $password, $database) {
     global $conn_hostname, $conn_username, $conn_password, $conn_database;
