@@ -1,5 +1,7 @@
 <?php
 
+// Configure variables needed for database connection
+
 define('LOCAL', 1);
 define('BATCAVE', 2);
 
@@ -12,28 +14,28 @@ else {
     $PLATFORM = LOCAL; }
 
 switch ($PLATFORM) {
-case LOCAL: connect_local(); break;
-case BATCAVE: connect_batcave(); break;
+case LOCAL: config_local(); break;
+case BATCAVE: config_batcave(); break;
 default:
    echo "<p>ERROR: no connection platform (connection.php)</p>"; }
 
-function connect_local() {
+function config_local() {
     global $corpus;
-    connect("127.0.0.1:8889", 'root', 'root', 'tgist' . $corpus); }
+    config("127.0.0.1:8889", 'root', 'root', 'tgist' . $corpus); }
 
-function connect_batcave() {
+function config_batcave() {
     global $corpus;
     $pw = trim(file_get_contents("password.txt"));
-    connect("localhost", 'batcave1_tgist', $pw, 'batcave1_tgist_' . $corpus); }
+    config("localhost", 'batcave1_tgist', $pw, 'batcave1_tgist_' . $corpus); }
 
-function connect($host, $user, $password, $database) {
+function config($host, $user, $password, $database) {
     global $conn_hostname, $conn_username, $conn_password, $conn_database;
     $conn_hostname = $host;
     $conn_username = $user;
     $conn_password = $password;
     $conn_database = $database; }
 
-function show_connection() {
+function show_config() {
     global $conn_hostname, $conn_username, $conn_password, $conn_database;
     dbg("DATABASE: $conn_hostname > $conn_username > $conn_database"); }
 

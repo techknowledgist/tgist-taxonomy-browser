@@ -1,31 +1,31 @@
 <?php
 
 $DEBUG = false;
-$DEBUG = true;
 
 if ($DEBUG) {
     error_reporting( E_ALL );
     ini_set('display_errors', 1); }
 
 require('database.php');
-db_connect();
+$connection = db_connect();
 
 $corpus = $_GET['corpus'];
 $term = $_GET['term'];
 
 if ($term) {
-    $found = db_select_objects("select * from technologies where name = '$term'");
+    $found = db_select($connection, "select * from technologies where name = '$term'");
+    //$found = db_select_objects("select * from technologies where name = '$term'");
     if (! empty($found)) {
         $frequency = $found[0]->count;
         //print "<pre>"; print_r($found); print "</pre>";
-        $supers = db_select_objects("select * from hierarchy where source = '$term'");
-        $subs = db_select_objects("select * from hierarchy where target = '$term'");
-        $related = db_select_objects("select * from relations where source = '$term' limit 20");
+        $supers = db_select($connection, "select * from hierarchy where source = '$term'");
+        $subs = db_select($connection, "select * from hierarchy where target = '$term'");
+        $related = db_select($connection, "select * from relations where source = '$term' limit 20");
         //print "<pre>"; print_r($supers); print "</pre>";
     }
 }
 
-dbg_vars();
+//dbg_vars();
 
 
 function url($term) {
