@@ -21,7 +21,7 @@ default:
 
 function config_local() {
     global $corpus;
-    config("127.0.0.1:8889", 'root', 'root', 'tgist' . $corpus); }
+    config("127.0.0.1:8889", 'root', 'root', 'tgist_' . $corpus); }
 
 function config_batcave() {
     global $corpus;
@@ -29,14 +29,14 @@ function config_batcave() {
     config("localhost", 'batcave1_tgist', $pw, 'batcave1_tgist_' . $corpus); }
 
 function config($host, $user, $password, $database) {
-    global $conn_hostname, $conn_username, $conn_password, $conn_database;
-    $conn_hostname = $host;
-    $conn_username = $user;
-    $conn_password = $password;
-    $conn_database = $database; }
+    global $conn_host, $conn_user, $conn_pw, $conn_db;
+    $conn_host = $host;
+    $conn_user = $user;
+    $conn_pw = $password;
+    $conn_db = $database; }
 
 function show_config() {
-    global $conn_hostname, $conn_username, $conn_password, $conn_database;
-    dbg("DATABASE: $conn_hostname > $conn_username > $conn_database"); }
+    global $conn_host, $conn_user, $conn_pw, $conn_db;
+    dbg("DATABASE: $conn_host > $conn_user > $conn_db"); }
 
 ?>
